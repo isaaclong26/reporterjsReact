@@ -108,11 +108,11 @@ function App() {
          }
          const bootstrapAsync = async () => {
        
-           let fetchUrl =`http://localhost:3001/`   
+           let fetchUrl =`https://reporterjsexpress.herokuapp.com/`   
             await fetch(fetchUrl, fetchOptions)
            .then(response =>response.json())
            .then((data)=>{
-            console.log(data)
+            ////console.log(data)
             setEntries(data)
 
 
@@ -168,7 +168,7 @@ function App() {
                 
                     })
                     setWeeks(weeks)
-                    console.log(weeks.week4)
+                    ////console.log(weeks.week4)
             
                       try{
                          let totalEntries = 0;
@@ -264,7 +264,7 @@ function App() {
 
                      }
                      catch(e) {
-                       console.log(e)
+                       ////console.log(e)
                      }
                   
 
@@ -286,6 +286,15 @@ function App() {
         )
       }
   else{
+    let totWeek = weeks.week4.entries.length;
+    let totMonth = weeks.week4.entries.length+ weeks.week3.entries.length+ weeks.week2.entries.length+ weeks.week1.entries.length
+    let weekEntries = weeks.week4.entries 
+    // for(x in weekEntries){
+    //   let entry = weekEntries[x];
+    //   ////console.log(entry.question2)
+    // }
+
+
   return (
     <div className='container-fluid'>
     {/* <div className="App row ">
@@ -297,7 +306,11 @@ function App() {
 
     <div className="row">
       <MyChartComponent data={chartData} />
+    </div>
 
+    <div className='row'>
+      <h2>Entries This Week:  {totWeek}</h2>
+      <h2>Entries This Month:  {totMonth}</h2>
     </div>
     </div>
   );
