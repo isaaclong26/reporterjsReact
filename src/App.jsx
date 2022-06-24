@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components'
 import MyChartComponent from "./chart";
-
+import Entries from "./entries"
 
 var base64 = require('base-64');
 
@@ -112,7 +111,7 @@ function App() {
             await fetch(fetchUrl, fetchOptions)
            .then(response =>response.json())
            .then((data)=>{
-            ////console.log(data)
+            // console.log(data)
             setEntries(data)
 
 
@@ -308,9 +307,10 @@ function App() {
       <MyChartComponent data={chartData} />
     </div>
 
+  
+
     <div className='row'>
-      <h2>Entries This Week:  {totWeek}</h2>
-      <h2>Entries This Month:  {totMonth}</h2>
+        <Entries weeks={weeks} entries={entries}></Entries>
     </div>
     </div>
   );

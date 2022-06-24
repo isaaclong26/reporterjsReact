@@ -7,7 +7,6 @@ const MyChartComponent = ( {data} ) => {
     useEffect(()=>{
         let month = data.month
         let week = data.week4
-    console.log("chart", data.month);
     setMonth([month.projectCost, month.conditionOfProduct, month.performance, month.leadTimes, month.response, month.completionDate, month.install, month.accountant])
     setCurrentWeek([week.projectCost, week.conditionOfProduct, week.performance, week.leadTimes, week.response, week.completionDate, week.install, week.accountant])
 
