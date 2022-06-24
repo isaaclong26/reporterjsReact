@@ -1,12 +1,12 @@
 import React,{useState} from "react";
 import styled from "styled-components"
-
+import CommentsDiv from "./comments"
 // Overall Container 
 const EntriesContainer = styled.div`
 
 
 `
-
+const totComments  = [];
 
 // Individual Card
 const EntryDiv = styled.div`
@@ -56,13 +56,16 @@ const EntryCard = ({entry, key })=>{
         commentsClass = "col-lg-12"
     }
     
-    console.log(entry)
+   
     let comments = []
     if(entry.question1 !== ""){
         comments.push(entry.question1)
+        totComments.push(entry.question1)
+
     }
     if(entry.question2 !== ""){
         comments.push(entry.question2)
+        totComments.push(entry.question2)
     }
 
     let scoresToDisplay = []
@@ -143,7 +146,7 @@ const EntryCard = ({entry, key })=>{
 
 const Entries = ({weeks, entries})=>{
 
-
+    console.log(totComments)
     const [tFT, setTFT]= useState(false)
     const [toggleColor, setToggleColor] = useState(['#439639', '#abb8c3']);
     //false = week true = month; default to week
@@ -176,6 +179,12 @@ const Entries = ({weeks, entries})=>{
         : <> {weeks.week4.entries.map((entry, index) => <EntryCard entry={entry} id={index}></EntryCard>)}</>
        }
        </div>
+       <div className="row">
+       <CommentsDiv data={totComments}></CommentsDiv>
+
+
+       </div>
+
         </EntriesContainer>
     )
 }
