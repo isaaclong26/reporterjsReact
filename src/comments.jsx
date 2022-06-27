@@ -1,6 +1,16 @@
 import React,{useEffect, useState} from "react";
 import * as tf from '@tensorflow/tfjs';
 import padSequences from "./helper";
+import styled from "styled-components"
+
+
+
+const CAS = styled.div`
+  padding: 20px;
+  margin: 10px;
+  background-color:#f0f0f0;
+`
+
 
 
 const CommentsDiv = ({data})=>{
@@ -24,7 +34,7 @@ const CommentsDiv = ({data})=>{
     const [seqText, setSeq] = useState("")
     const [padText, setPad] = useState("")
     const [inputText, setInput] = useState("")
-    
+    const [cAS, setCAS] = useState([""])
     
     async function loadModel(url) {
       try {
@@ -47,7 +57,6 @@ const CommentsDiv = ({data})=>{
     
     
     const getSentimentScore =(text) => {
-      console.log(text)
       const inputText = text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
       setTrim(inputText)
     //   console.log(inputText)
@@ -66,13 +75,11 @@ const CommentsDiv = ({data})=>{
       setPad(paddedSequence)
     
       const input = tf.tensor2d(paddedSequence, [1, metadata.max_len]);
-      console.log(input)
       setInput(input)
       const predictOut = model.predict(input);
       const score = predictOut.dataSync()[0];
       predictOut.dispose();
       setScore(score)  
-      console.log(score)
       return score;
     }
     
@@ -93,9 +100,11 @@ const CommentsDiv = ({data})=>{
         for(let x in comments){
             let comment = comments[x];
             let score = getSentimentScore(comment)
-            scores.push(score)
+            let ots = {text: comment, set: score};
+
+            scores.push(ots)
         }
-        console.log(scores)
+          setCAS(scores)
     }   
     
 
@@ -104,11 +113,21 @@ const CommentsDiv = ({data})=>{
         <div className="container">
 
             <div className="row">
-                <h1 className="text-center">All Comments</h1>
+                <h1 className="text-center">All Comments(experimental)</h1>
             </div>
             
             <div className="row">
-            <button onClick={getScores}>Press Me</button>
+            <button className="btn" onClick={getScores}>Press Me</button>
+
+            {cAS.map(x =>
+            <CAS className="row">
+                <CAS className="col-lg-12">{x.text}</CAS>
+                <CAS className="col-lg-12">{x.set}</CAS>
+
+                </CAS>
+
+              )}
+
 
             </div>
 

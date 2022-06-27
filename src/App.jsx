@@ -3,6 +3,7 @@ import './App.css';
 import styled from 'styled-components'
 import MyChartComponent from "./chart";
 import Entries from "./entries"
+import Nav from './nav';
 
 var base64 = require('base-64');
 
@@ -296,12 +297,7 @@ function App() {
 
   return (
     <div className='container-fluid'>
-    {/* <div className="App row ">
-      {entries && entries.map(entry =>
-      <Entry data={entry}></Entry>
-        )}
-
-    </div> */}
+      <Nav></Nav>
 
     <div className="row">
       <MyChartComponent data={chartData} />

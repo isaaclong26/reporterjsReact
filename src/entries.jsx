@@ -96,7 +96,7 @@ const EntryCard = ({entry, key })=>{
 
 
     return(
-        <div className="col-lg-4 my-5">
+        <div className="col-lg-4 my-5 col-md-6">
 
             <EntryDiv  className="container">
                 <div className="row">
