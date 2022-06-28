@@ -296,19 +296,14 @@ function App() {
 
 
   return (
-    <div className='container-fluid'>
-      <Nav></Nav>
+   
+      <Nav
+       chartData={chartData}
+        entries={entries}
+         weeks={weeks}
+         >
+         </Nav>
 
-    <div className="row">
-      <MyChartComponent data={chartData} />
-    </div>
-
-  
-
-    <div className='row'>
-        <Entries weeks={weeks} entries={entries}></Entries>
-    </div>
-    </div>
   );
 }
 }

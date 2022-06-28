@@ -47,16 +47,34 @@ justify-content: space-between;
 margin-bottom: 10px;
 border-radius: 5px;
 `
-
+let yorn1 = {entries: []};
+let yorn2 = {entries: []};
+let yorn3 = {entries: []};
 const EntryCard = ({entry, key })=>{
+    
     let yorns = false;
     let commentsClass = "col-lg-6"
-    if(entry.Yorn1 !== "" || entry.Yorn2 !== "" || entry.Yorn3 !== ""){
+    if(entry.Yorn1 !== "" ){
+        yorn1.entries.push(entry.Yorn1)
+        yorns = true;
+        commentsClass = "col-lg-12"
+    }
+    if(entry.Yorn2 !== "" ){
+        yorn2.entries.push(entry.Yorn2)
+        yorns = true;
+        commentsClass = "col-lg-12"
+    }
+    if(entry.Yorn3 !== "" ){
+        yorn3.entries.push(entry.Yorn3)
         yorns = true;
         commentsClass = "col-lg-12"
     }
     
-   
+    
+    
+   console.log(yorn1)
+   console.log(yorn2)
+   console.log(yorn3)
     let comments = []
     if(entry.question1 !== ""){
         comments.push(entry.question1)
@@ -102,7 +120,7 @@ const EntryCard = ({entry, key })=>{
                 <div className="row">
 
                     <h2>{entry.Title} - {entry.id}</h2>
-                    <h3 style={{backgroundColor: background, color:"white", borderRadius: "5px"}}>Average Score - {ave}</h3>
+                    <h3 style={{backgroundColor: background, color:"white", borderRadius: "5px"}}>Customer Experience Score - {ave}</h3>
 
                 </div>
                 <div className="row">
@@ -146,7 +164,6 @@ const EntryCard = ({entry, key })=>{
 
 const Entries = ({weeks, entries})=>{
 
-    console.log(totComments)
     const [tFT, setTFT]= useState(false)
     const [toggleColor, setToggleColor] = useState(['#439639', '#abb8c3']);
     //false = week true = month; default to week

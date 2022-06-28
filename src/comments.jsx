@@ -82,6 +82,48 @@ const CommentsDiv = ({data})=>{
       setScore(score)  
       return score;
     }
+
+
+    const getSentimentScoreLong =(text) => {
+      let newText = text.replace(/\./g," .");
+      let list = newText.split('.')
+      let totScore = 0;
+      let totIndex = 0; 
+      for(let x in list){
+        let text = list[x]
+      const inputText = text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
+      setTrim(inputText)
+    //   console.log(inputText)
+      const sequence = inputText.map(word => {
+        let wordIndex = metadata.word_index[word] + metadata.index_from;
+        if (wordIndex > metadata.vocabulary_size) {
+          wordIndex = OOV_INDEX;
+        }
+        return wordIndex;
+      });
+      setSeq(sequence)
+    //   console.log(sequence)
+      // Perform truncation and padding.
+      const paddedSequence = padSequences([sequence], metadata.max_len);
+    //   console.log(metadata.max_len)
+      setPad(paddedSequence)
+    
+      const input = tf.tensor2d(paddedSequence, [1, metadata.max_len]);
+      setInput(input)
+      const predictOut = model.predict(input);
+      const score = predictOut.dataSync()[0];
+      predictOut.dispose();
+      setScore(score)  
+      totScore += score;
+      totIndex ++;
+
+    }
+    let ave = totScore/totIndex;
+    return ave
+
+    }
+
+
     
     
     useEffect(()=>{
@@ -96,10 +138,17 @@ const CommentsDiv = ({data})=>{
     // end 
     const getScores = async()=>{ 
            var scores = []
-
+          let score
         for(let x in comments){
             let comment = comments[x];
-            let score = getSentimentScore(comment)
+            let list = comment.split(" ").length
+            if(list < 11){
+             score = getSentimentScore(comment)
+            }
+            else{
+               score = getSentimentScoreLong(comment)
+            }
+
             let ots = {text: comment, set: score};
 
             scores.push(ots)
