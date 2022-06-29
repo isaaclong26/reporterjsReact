@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from "react";
 import Chart from "react-apexcharts";
 
-const MyChartComponent = ( {data} ) => {
+const MyChartComponent = ( {data, entries} ) => {
+
+    console.log(entries)
     const [currentWeek, setCurrentWeek] = useState([]);
     const [month, setMonth] = useState([]);
     useEffect(()=>{

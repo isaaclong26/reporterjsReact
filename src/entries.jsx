@@ -196,11 +196,7 @@ const Entries = ({weeks, entries})=>{
         : <> {weeks.week4.entries.map((entry, index) => <EntryCard entry={entry} id={index}></EntryCard>)}</>
        }
        </div>
-       <div className="row">
-       <CommentsDiv data={totComments}></CommentsDiv>
-
-
-       </div>
+      
 
         </EntriesContainer>
     )

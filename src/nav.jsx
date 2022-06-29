@@ -4,12 +4,8 @@ import chartLogo from "./chartLogo.png";
 import entryLogo from "./Voting.png"
 import commentsLogo from "./comments.png"
 import MyChartComponent from "./chart";
-import Entries from "./entries"
-
-const Nav = ({chartData, entries, weeks})=>{
-    const [menuVis, setMenuVis] = useState(true)
-    const [chartVis, setChartVis] = useState(true)
-    const [entriesVis, setEntriesVis] = useState(false)
+import Entries from "./entries";
+import CommentsDiv from "./comments"
 
 const NavCont = styled.div`
 position: fixed;
@@ -43,6 +39,14 @@ background: transparent;
 width: 100%;
 margin: 15px 0; 
 `
+const Nav = ({chartData, entries, weeks, comments})=>{
+    const [menuVis, setMenuVis] = useState(true)
+    const [chartVis, setChartVis] = useState(true)
+    const [entriesVis, setEntriesVis] = useState(false)
+    const [commentsVis, setCommentsVis] = useState(false)
+
+
+
   
 
       useEffect(()=>{
@@ -58,22 +62,7 @@ margin: 15px 0;
         });
 
       })
-      const chartToggle = ()=>{
-        if(chartVis){
-            setChartVis(false)
-        }
-        else{
-            setChartVis(true)
-        }
-      }
-      const entriesToggle = ()=>{
-        if(entriesVis){
-            setEntriesVis(false)
-        }
-        else{
-            setEntriesVis(true)
-        }
-      }
+     
 
 
 
@@ -84,9 +73,9 @@ margin: 15px 0;
         <NavContFixed id="fixed">
  {menuVis && (
                 <NavCont>
-                    <NavLogo className="navLogo" src={chartLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); chartToggle()}}/>
-                    <NavLogo className="navLogo" src={entryLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); entriesToggle()}}/>
-                    <NavLogo className="navLogo" src={commentsLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); console.log("test")}}/>
+                    <NavLogo className="navLogo" src={chartLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); setChartVis(!chartVis)}}/>
+                    <NavLogo className="navLogo" src={entryLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); setEntriesVis(!entriesVis)}}/>
+                    <NavLogo className="navLogo" src={commentsLogo}  style={{pointerEvents:"auto"}} onClick={(e)=> {e.stopPropagation(); setCommentsVis(!commentsVis)}}/>
                     
 
                 </NavCont>
@@ -100,7 +89,7 @@ margin: 15px 0;
 
 {chartVis && 
     <div className="row">
-      <MyChartComponent data={chartData} />
+      <MyChartComponent data={chartData}  entries={entries}/>
     </div>
 }
   
@@ -109,7 +98,14 @@ margin: 15px 0;
         <Entries weeks={weeks} entries={entries}></Entries>
     </div>
    
- }         
+ }    
+
+ {commentsVis &&
+    <div className='row'>
+        <CommentsDiv data={comments}></CommentsDiv>
+    </div>
+   
+ }            
  </div>
         
     </>

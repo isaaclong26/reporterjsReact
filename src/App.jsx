@@ -66,22 +66,6 @@ var dates = {
 
 
 
-function Entry(data) {
-
-  let entry = data.data
-  let date = new Date(entry.date)
-  let formatedDate = `${date.getMonth()}/${date.getDate()}`
-    return(
-      <EntryDiv className="col-lg-2">
-
-          <h3> Project: {entry.id}</h3>
-          <h3> Date: {formatedDate}</h3>
-          <h3> Average Score: {entry.averageScore}</h3>
-
-      </EntryDiv>
-    )
-}
-
 function App() {
   const [chartData, setChartData] = useState({})
   const [isLoading, setIsLoading] = useState(true);
@@ -289,11 +273,21 @@ function App() {
     let totWeek = weeks.week4.entries.length;
     let totMonth = weeks.week4.entries.length+ weeks.week3.entries.length+ weeks.week2.entries.length+ weeks.week1.entries.length
     let weekEntries = weeks.week4.entries 
-    // for(x in weekEntries){
-    //   let entry = weekEntries[x];
-    //   ////console.log(entry.question2)
-    // }
+    
+    let totComments = []
+    for(let x in entries){
+      let entry = entries[x];
+    
+    
+    if(entry.question1 !== ""){
+        totComments.push(entry.question1)
 
+    }
+    if(entry.question2 !== ""){
+        totComments.push(entry.question2)
+    }
+
+    }
 
   return (
    
@@ -301,6 +295,7 @@ function App() {
        chartData={chartData}
         entries={entries}
          weeks={weeks}
+         comments={totComments}
          >
          </Nav>
 
