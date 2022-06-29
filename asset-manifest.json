@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/reporterjsReact/static/css/main.610ac5e7.css",
-    "main.js": "/reporterjsReact/static/js/main.6008db58.js",
+    "main.css": "/reporterjsReact/static/css/main.5f80c8a9.css",
+    "main.js": "/reporterjsReact/static/js/main.492bd850.js",
     "static/js/787.806d90b3.chunk.js": "/reporterjsReact/static/js/787.806d90b3.chunk.js",
+    "static/media/Voting.png": "/reporterjsReact/static/media/Voting.9546d84b1284cbef8cbb.png",
+    "static/media/comments.png": "/reporterjsReact/static/media/comments.e61135bb4ceb91e6e88c.png",
+    "static/media/chartLogo.png": "/reporterjsReact/static/media/chartLogo.af6559c17760f8585448.png",
     "index.html": "/reporterjsReact/index.html",
-    "main.610ac5e7.css.map": "/reporterjsReact/static/css/main.610ac5e7.css.map",
-    "main.6008db58.js.map": "/reporterjsReact/static/js/main.6008db58.js.map",
+    "main.5f80c8a9.css.map": "/reporterjsReact/static/css/main.5f80c8a9.css.map",
+    "main.492bd850.js.map": "/reporterjsReact/static/js/main.492bd850.js.map",
     "787.806d90b3.chunk.js.map": "/reporterjsReact/static/js/787.806d90b3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.610ac5e7.css",
-    "static/js/main.6008db58.js"
+    "static/css/main.5f80c8a9.css",
+    "static/js/main.492bd850.js"
   ]
 }
